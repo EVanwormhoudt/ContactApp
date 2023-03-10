@@ -99,7 +99,7 @@ public class ContactViewController {
         if (selectedPerson==null){
             return;
         }
-        personDao.delete(selectedPerson.getId());
+        personDao.deletePerson(selectedPerson.getId());
         categoryChoiceBox.setValue(null);
         lastnameField.setText("");
         firstnameField.setText("");

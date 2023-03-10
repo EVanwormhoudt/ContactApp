@@ -78,7 +78,7 @@ public class PersonDao {
 	 * Prepare a statement to be executed
 	 * @param person
 	 * 			the person to be updated
-	 * 		  statement
+	 * @param statement
 	 * 			the statement to be prepared
 	 *
 	 */
@@ -120,7 +120,7 @@ public class PersonDao {
 	 * @param personId
 	 * 			Id of the person we want to delete
 	 */
-	public void delete(Integer personId) {
+	public void deletePerson(Integer personId) {
 	    try (Connection connection = DataSourceFactory.getDataSource().getConnection()) {
 	        try (PreparedStatement statement = 
 	                    connection.prepareStatement("delete from person where idperson=?")) {
@@ -140,7 +140,8 @@ public class PersonDao {
 	 */
 	public void updatePerson(Person person) {
 		try (Connection connection = DataSourceFactory.getDataSource().getConnection()) {
-	        String sqlQuery = "UPDATE person SET lastname = ?,firstname = ?,nickname = ?,phone_number = ?,address = ?,email_address = ?, birth_date = ?,category=? WHERE idperson = ?";
+	        String sqlQuery = "UPDATE person SET lastname = ?,firstname = ?,nickname = ?,phone_number = ?," +
+					"address = ?,email_address = ?, birth_date = ?,category=? WHERE idperson = ?";
 	        try (PreparedStatement statement = connection.prepareStatement(
 	                        sqlQuery)) {
 				prepare_statement(person, statement);
