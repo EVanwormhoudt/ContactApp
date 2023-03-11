@@ -6,7 +6,6 @@ import isen.contact.utils.ContactCellFactory;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -92,6 +91,7 @@ public class ContactViewController {
         selectedPerson.setAddress(addressField.getText());
 
         personDao.updatePerson(selectedPerson);
+        refreshList();
     }
 
     @FXML
@@ -121,10 +121,11 @@ public class ContactViewController {
         selectedPerson = newPerson;
         newPerson.setLastname("lastname");
         newPerson.setFirstname("firstname");
-        newPerson.setNickname("nickname");
+        newPerson.setNickname("");
         newPerson.setBirth_date(LocalDate.now());
-        personDao.addPerson(newPerson);
+        selectedPerson = personDao.addPerson(newPerson);
         refreshList();
+        showPersonDetails(selectedPerson);
 
 
 

@@ -165,11 +165,11 @@ public class PersonDaoTestCase {
 	 @Test
 	 public void shouldDeletePerson() throws Exception {
 		 // WHEN
-		 personDao.deletePerson(1);
+		 personDao.deletePerson(4);
 		 // THEN
 		 Connection connection = DataSourceFactory.getDataSource().getConnection();
 		 Statement stmt = connection.createStatement();
-		 ResultSet results = stmt.executeQuery("SELECT * FROM person WHERE idperson = 1");
+		 ResultSet results = stmt.executeQuery("SELECT * FROM person WHERE idperson = 4");
 		 assertThat(results.next()).isFalse();
 		 results.close();
 		 ResultSet results2 = stmt.executeQuery("SELECT * FROM person WHERE idperson = 2");
