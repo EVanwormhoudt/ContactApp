@@ -6,6 +6,8 @@ import isen.contact.utils.ContactCellFactory;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.io.*;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -129,5 +131,30 @@ public class ContactViewController {
 
 
 
+    }
+
+    @FXML
+    private void handleExportButton(){
+        List<Person> listToExport = personDao.listAllPersons();
+        try {
+            OutputStream outputStream= new FileOutputStream("src/main/resources/isen/contact/export/export-file.txt");
+            Writer writer = new OutputStreamWriter(outputStream);
+
+            for(Person person :listToExport){
+                writer.write(person.toString());
+            }
+
+            writer.close();
+            outputStream.close();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Database exported");
+            alert.setHeaderText(null);
+            alert.setContentText("The data base has been exported successfully.");
+            alert.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -2,6 +2,7 @@ package isen.contact.entities;
 
 import java.util.Date;
 import java.time.LocalDate;
+import java.util.Locale;
 
 public class Person {
 	
@@ -121,5 +122,11 @@ public class Person {
 	}
 
 
-
+	@Override
+	public String toString() {
+		return String.format(Locale.FRANCE,
+				"%s %s{id=%d, nickname=%s, phone_number='%s', category='%s', birthday='%s', email='%s', address='%s'}\n",
+				this.firstname,this.lastname,this.id, this.nickname, this.phone_number,this.category,this.birth_date.toString(),this.email_address,this.address
+		);
+	}
 }
