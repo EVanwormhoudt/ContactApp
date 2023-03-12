@@ -137,15 +137,25 @@ public class ContactViewController {
     private void handleExportButton(){
         List<Person> listToExport = personDao.listAllPersons();
         try {
-            OutputStream outputStream= new FileOutputStream("src/main/resources/isen/contact/export/export-file.txt");
-            Writer writer = new OutputStreamWriter(outputStream);
+            // create Vcard for each person
+            for (Person person : listToExport) {
+                String vcard = "BEGIN:VCARD \rVERSION:3.0 \rN:" + person.getLastname() + ";" + person.getFirstname() + " \rFN:" + person.getFirstname() + " " + person.getLastname() + " \rTEL;TYPE=CELL:" + person.getPhone_number() + " \rEMAIL:" + person.getEmail_address() + " \rADR;TYPE=HOME:" + person.getAddress() + " \rEND:VCARD";
 
-            for(Person person :listToExport){
-                writer.write(person.toString());
+                // write vcard to file by creating a new file
+                File file = new File("src/main/resources/isen/contact/vcards/" + person.getFirstname() + "_" + person.getLastname() + ".vcf");
+
+                // if file doesn't exists, then create it
+                if (!file.exists()) {
+                    file.createNewFile();
+                }
+                FileWriter fw = new FileWriter(file.getAbsoluteFile());
+                BufferedWriter bw = new BufferedWriter(fw);
+                bw.write(vcard);
+                bw.close();
+
+
             }
 
-            writer.close();
-            outputStream.close();
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Database exported");

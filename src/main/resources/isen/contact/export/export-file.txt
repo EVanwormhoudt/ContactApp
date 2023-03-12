@@ -1,3 +1,0 @@
-Gabriel Contois{id=1, nickname=G, phone_number='012345678910121', category='friend', birthday='2000-05-05', email='email_address_1', address='x rue des y'}
-Elliott Vanwormhoudt{id=2, nickname=E, phone_number='012345678910121', category='family', birthday='2001-08-05', email='email_address_2', address='x rue des z'}
-Julien Lefebvre{id=3, nickname=J, phone_number='012345678910121', category='family', birthday='2001-06-06', email='email_address_3', address='z rue des x'}
