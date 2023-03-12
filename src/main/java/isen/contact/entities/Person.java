@@ -16,7 +16,7 @@ public class Person {
 	private LocalDate birth_date;
 	private String category;
 	
-	public Person() {	
+	public Person() {
 	}
 	
 	public Person(Integer id, String lastname, String firstname, String nickname, String phone_number, String address,
@@ -128,5 +128,12 @@ public class Person {
 				"%s %s{id=%d, nickname=%s, phone_number='%s', category='%s', birthday='%s', email='%s', address='%s'}\n",
 				this.firstname,this.lastname,this.id, this.nickname, this.phone_number,this.category,this.birth_date.toString(),this.email_address,this.address
 		);
+	}
+
+	public String toVcard() {
+		String birthDate = this.getBirth_date().toString().replace("-", "");
+		return ("BEGIN:VCARD \rVERSION:4.0 \rN:%s;%s \rFN:%s \rNICKNAME:%s \rBDAY:%s \rTEL;TYPE=CELL:%s \rEMAIL:%s" +
+				" \rADR;TYPE=HOME:%s \rCATEGORIES:%s \rEND:VCARD").formatted(this.getLastname(), this.getFirstname(),this.getFirstname() + " " + this.getLastname(),
+				 this.getNickname(), birthDate, this.getPhone_number(), this.getEmail_address(), this.getAddress(), this.getCategory());
 	}
 }

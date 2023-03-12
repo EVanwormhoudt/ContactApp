@@ -1,7 +1,13 @@
 # ContactApp
 
-M1 java probject 
+M1 java probject \
+by Elliott Vanwormhoudt, Julien Lefebvre et Grabiel Contois
 
-it's just a simple app where you can access users from a database.
-You can delete users, modify them and add new ones.
-You can also export them in the Vcard format
+## Description
+
+This is a simple contact app that allows you to add, delete, and edit contacts. 
+
+You can also export contacts to vcf files.
+
+Each contact has a name, nickname, phone number, email, address and a category.
+

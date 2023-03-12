@@ -137,17 +137,12 @@ public class ContactViewController {
     private void handleExportButton(){
         List<Person> listToExport = personDao.listAllPersons();
         try {
-            // create Vcard for each person
-            for (Person person : listToExport) {
-                String birthDate = person.getBirth_date().toString().replace("-", "");
-                String vcard = ("BEGIN:VCARD \rVERSION:4.0 \rN:%s;%s \rFN:%s %s \rNICKNAME:%s \rBDAY:%s \rTEL;TYPE=CELL:%s \rEMAIL:%s" +
-                        " \rADR;TYPE=HOME:%s \rEND:VCARD").formatted(person.getLastname(), person.getFirstname(),
-                        person.getFirstname(), person.getLastname(), person.getNickname(), birthDate, person.getPhone_number(), person.getEmail_address(), person.getAddress());
 
-                // write vcard to file by creating a new file
+            for (Person person : listToExport) {
+                String vcard =  person.toVcard();
+
                 File file = new File("src/main/resources/isen/contact/vcards/" + person.getFirstname() + "_" + person.getLastname() + ".vcf");
 
-                // if file doesn't exists, then create it
                 if (!file.exists()) {
                     file.createNewFile();
                 }
@@ -155,8 +150,6 @@ public class ContactViewController {
                 BufferedWriter bw = new BufferedWriter(fw);
                 bw.write(vcard);
                 bw.close();
-
-
             }
 
 

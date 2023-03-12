@@ -1,1 +1,1 @@
-BEGIN:VCARD VERSION:3.0 N:Vanwormhoudt;Elliott FN:Elliott Vanwormhoudt TEL;TYPE=CELL:012345678910121 EMAIL:email_address_2 ADR;TYPE=HOME:x rue des z END:VCARD
+BEGIN:VCARD VERSION:4.0 N:Vanwormhoudt;Elliott FN:Elliott Vanwormhoudt NICKNAME:E BDAY:20010805 TEL;TYPE=CELL:012345678910121 EMAIL:email_address_2 ADR;TYPE=HOME:x rue des z CATEGORIES:family END:VCARD
