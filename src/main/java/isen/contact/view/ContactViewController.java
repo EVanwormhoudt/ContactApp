@@ -139,7 +139,10 @@ public class ContactViewController {
         try {
             // create Vcard for each person
             for (Person person : listToExport) {
-                String vcard = "BEGIN:VCARD \rVERSION:3.0 \rN:" + person.getLastname() + ";" + person.getFirstname() + " \rFN:" + person.getFirstname() + " " + person.getLastname() + " \rTEL;TYPE=CELL:" + person.getPhone_number() + " \rEMAIL:" + person.getEmail_address() + " \rADR;TYPE=HOME:" + person.getAddress() + " \rEND:VCARD";
+                String birthDate = person.getBirth_date().toString().replace("-", "");
+                String vcard = ("BEGIN:VCARD \rVERSION:4.0 \rN:%s;%s \rFN:%s %s \rNICKNAME:%s \rBDAY:%s \rTEL;TYPE=CELL:%s \rEMAIL:%s" +
+                        " \rADR;TYPE=HOME:%s \rEND:VCARD").formatted(person.getLastname(), person.getFirstname(),
+                        person.getFirstname(), person.getLastname(), person.getNickname(), birthDate, person.getPhone_number(), person.getEmail_address(), person.getAddress());
 
                 // write vcard to file by creating a new file
                 File file = new File("src/main/resources/isen/contact/vcards/" + person.getFirstname() + "_" + person.getLastname() + ".vcf");
